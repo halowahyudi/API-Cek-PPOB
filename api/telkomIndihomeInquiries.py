@@ -4,7 +4,7 @@ from src.telkomIndihome import telkomIndihome
 telkomIndihomeInquiriess = blueprints.Blueprint('telkomIndihomeInquiriess', __name__)
 
 
-@telkomIndihomeInquiriess.route('/api/telkomIndihome/', methods=['GET'])
+@telkomIndihomeInquiriess.route('/api/telkomIndihomeInquiries/', methods=['GET'])
 def index():
     return {
         "status": False,
@@ -12,7 +12,7 @@ def index():
     }, 404
 
 
-@telkomIndihomeInquiriess.route('/api/telkomIndihome/<customer_number>', methods=['GET'])
+@telkomIndihomeInquiriess.route('/api/telkomIndihomeInquiries/<customer_number>', methods=['GET'])
 def get_data(customer_number):
     try:
         return telkomIndihome(customer_number)._get_data()
