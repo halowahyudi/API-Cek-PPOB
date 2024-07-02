@@ -273,7 +273,7 @@ Contoh output jika berhasil
   "customer_name": "xxxxxx",
   "customer_number": "xxxxxxxxxxxx",
   "periods": [],
-  "amount": []
+  "amount": 300000
 }
 ```
 
