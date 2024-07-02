@@ -38,7 +38,7 @@ class telkomIndihome(ScraperAPI):
                 "status": True,
                 "customer_number": self.customer_number,
                 "customer_name": response.json()['data']['customer_name'],
-                "period": response.json()['data']['periods'],
+                "periods": response.json()['data']['periods'],
                 "amount": response.json()['data']['base_amount'],
             }
 
