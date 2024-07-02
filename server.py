@@ -6,6 +6,7 @@ from api.pdamInquiries import pdamInquiriess
 from api.prepaidInquiries import prepaidInquiriess
 from api.postpaidInquiries import postpaidInquiriess
 from api.bpjsInquiries import bpjsKesehatanInquiriess
+from api.telkomIndihomeInquiries import telkomIndihomeInquiriess
 
 app = Flask(__name__, template_folder='views')
 
@@ -26,6 +27,9 @@ app.register_blueprint(postpaidInquiriess)
 
 # Route BPJS Kesehatan Inquiries
 app.register_blueprint(bpjsKesehatanInquiriess)
+
+# Telkom Indihome Inquiries
+app.register_blueprint(telkomIndihomeInquiriess)
 
 
 @app.route('/', methods=['GET'])
