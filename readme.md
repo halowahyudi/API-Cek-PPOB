@@ -12,18 +12,25 @@ Project ini dibuat untuk tujuan pengembangan dan pembelajaran
 
 ## 📚 Daftar Isi
 
-- [Library](#library)
-- [Fitur](#fitur)
-- [Cara Penggunaan](#cara-penggunaan)
-- [Refrensi](#refrensi)
+- [API Cek 📑🗓](#api-cek-)
+  - [📚 Daftar Isi](#-daftar-isi)
+  - [Library](#library)
+  - [Fitur](#fitur)
+  - [Cara Penggunaan](#cara-penggunaan)
+  - [Refrensi](#refrensi)
     - [Prepaid Inquiries](#prepaid-inquiries)
     - [Postpaid Inquiries](#postpaid-inquiries)
     - [PDAM Inquiries](#pdam-inquiries)
     - [BPJS Kesehatan Inquiries](#bpjs-kesehatan-inquiries)
-
-- [Rest API](#rest-api)
-- [Deployment](#deployment)
-- [Web App](#web-app)
+    - [Telkom Indihome Inquiries](#telkom-indihome-inquiries)
+  - [Rest api](#rest-api)
+        - [Swagger API Documentation](#swagger-api-documentation)
+    - [Prepaid Inquiries](#prepaid-inquiries-1)
+    - [Postpaid Inquiries](#postpaid-inquiries-1)
+    - [Pdam Inquiries](#pdam-inquiries-1)
+    - [BPJS Kesehatan Inquiries](#bpjs-kesehatan-inquiries-1)
+  - [Deployment](#deployment)
+  - [Web App](#web-app)
 
 ## Library
 
@@ -33,19 +40,20 @@ Project ini dibuat untuk tujuan pengembangan dan pembelajaran
 - [Flask-restx](https://pypi.org/project/flask-restx/)
 - [Beautifulsoup4](https://pypi.org/project/beautifulsoup4/)
 - [Fake_useragent](https://pypi.org/project/fake-useragent/)
-- [Requests-toolbelt](https://pypi.org/project/requests-toolbelt/) 
+- [Requests-toolbelt](https://pypi.org/project/requests-toolbelt/)
 
 ## Fitur
 
 | Nama                                    | Status |
-|-----------------------------------------|--------|
-| prepaidInquiries ( Token Listrik )      | ✅      |
-| postpaidInquiries ( Tagihan Listrik )   | ✅      |
-| pdamInquiries ( Tagihan PDAM )          | ✅      |
-| bpjsKesehatanInquiries ( Tagihan BPJS ) | ✅      |
-| Rest API                                | ✅      |
-| Rest API Documentation                  | ✅      |
-| Web App                                 | ✅    |  
+| --------------------------------------- | ------ |
+| prepaidInquiries ( Token Listrik )      | ✅     |
+| postpaidInquiries ( Tagihan Listrik )   | ✅     |
+| pdamInquiries ( Tagihan PDAM )          | ✅     |
+| bpjsKesehatanInquiries ( Tagihan BPJS ) | ✅     |
+| telkomIndihomeInquiries ( Indihome )    | ✅     |
+| Rest API                                | ✅     |
+| Rest API Documentation                  | ✅     |
+| Web App                                 | ✅     |
 
 ## Cara Penggunaan
 
@@ -90,7 +98,7 @@ Berikut adalah contoh output dan parameter dari beberapa method yang terdapat pa
 Prepaid Inquiries adalah sebuah class yang digunakan untuk mengecek tagihan listrik prabayar
 
 | Parameter       | Tipe Data | Keterangan      |
-|-----------------|-----------|-----------------|
+| --------------- | --------- | --------------- |
 | customer_number | String    | Nomor pelanggan |
 
 Contoh output jika berhasil
@@ -119,7 +127,7 @@ Contoh output jika gagal
 Postpaid Inquiries adalah sebuah class yang digunakan untuk mengecek tagihan listrik pascabayar
 
 | Parameter       | Tipe Data | Keterangan      |
-|-----------------|-----------|-----------------|
+| --------------- | --------- | --------------- |
 | customer_number | String    | Nomor pelanggan |
 
 Contoh output jika berhasil
@@ -131,9 +139,7 @@ Contoh output jika berhasil
   "customer_name": "xxxxx xxxxxx",
   "segmentation": "R1",
   "power": 450,
-  "period": [
-    "2023-03-01"
-  ],
+  "period": ["2023-03-01"],
   "stand_meter": "00015338 - 00015445",
   "amount": 52230
 }
@@ -154,7 +160,7 @@ Contoh output jika gagal
 PDAM Inquiries adalah sebuah class yang digunakan untuk mengecek tagihan PDAM
 
 | Parameter       | Tipe Data | Keterangan      |
-|-----------------|-----------|-----------------|
+| --------------- | --------- | --------------- |
 | customer_number | String    | Nomor pelanggan |
 | operator_id     | String    | ID operator     |
 
@@ -226,7 +232,7 @@ print(
 BPJS Kesehatan Inquiries adalah sebuah class yang digunakan untuk mengecek tagihan BPJS Kesehatan
 
 | Parameter       | Tipe Data | Keterangan      |
-|-----------------|-----------|-----------------|
+| --------------- | --------- | --------------- |
 | customer_number | String    | Nomor pelanggan |
 
 Contoh output jika berhasil
@@ -248,6 +254,35 @@ Contoh output jika gagal
   "status": false,
   "customer_number": "0000003137160351",
   "message": "Tagihan tidak ditemukan atau sudah dibayar"
+}
+```
+
+### Telkom Indihome Inquiries
+
+Telkom Indihome Inquiries sebuah class yang digunakan untuk mengecek tagihan Indihome
+
+| Parameter       | Tipe Data | Keterangan      |
+| --------------- | --------- | --------------- |
+| customer_number | String    | Nomor pelanggan |
+
+Contoh output jika berhasil
+
+```json
+{
+  "status": true,
+  "customer_name": "xxxxxx",
+  "customer_number": "xxxxxxxxxxxx",
+  "periods": [],
+  "amount": []
+}
+```
+
+Contoh output jika gagal
+
+```json
+{
+  "status": false,
+  "customer_number": "xxxxxx"
 }
 ```
 
@@ -273,7 +308,7 @@ GET /prepaidInquiries/{customer_number}
 ```
 
 | Parameter       | Tipe Data | Keterangan      |
-|-----------------|-----------|-----------------|
+| --------------- | --------- | --------------- |
 | customer_number | String    | Nomor pelanggan |
 
 ### [Postpaid Inquiries](http://47.88.53.4:1111/api/postpaidInquiries/xxxxxxxxxxx)
@@ -283,7 +318,7 @@ GET /postpaidInquiries/{customer_number}
 ```
 
 | Parameter       | Tipe Data | Keterangan      |
-|-----------------|-----------|-----------------|
+| --------------- | --------- | --------------- |
 | customer_number | String    | Nomor pelanggan |
 
 ### [Pdam Inquiries](http://47.88.53.4:1111/api/pdamInquiries/xxxxxxxxxxx)
@@ -293,7 +328,7 @@ GET /pdamInquiries/{customer_number}/{operator_id}
 ```
 
 | Parameter       | Tipe Data | Keterangan      |
-|-----------------|-----------|-----------------|
+| --------------- | --------- | --------------- |
 | customer_number | String    | Nomor pelanggan |
 | operator_id     | String    | ID operator     |
 
@@ -304,7 +339,7 @@ GET /bpjsKesehatanInquiries/{customer_number}
 ```
 
 | Parameter       | Tipe Data | Keterangan      |
-|-----------------|-----------|-----------------|
+| --------------- | --------- | --------------- |
 | customer_number | String    | Nomor pelanggan |
 
 ## Deployment
@@ -351,7 +386,7 @@ INFO:waitress:Serving on http://127.0.0.0:5000
 ```
 
 ## Web App
+
 Untuk menggunakan web app yang telah didesain untuk mempermudah penggunaan API ini, anda dapat mengunjungi link berikut ini [Web App](http://47.88.53.4:1111/apps)
 
 ![img.png](image/img.png)
-
